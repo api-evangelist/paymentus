@@ -1,0 +1,154 @@
+aid: paymentus
+name: Paymentus
+review:
+  question: >-
+    Does Paymentus publish a public, self-serve developer surface with a
+    downloadable OpenAPI/Swagger specification?
+  answer: false
+  date: '2026-07-24'
+  reviewer: API Evangelist
+findings:
+  summary: |
+    Paymentus (NYSE: PAY) is an API-native US billing and payments company, but
+    its developer surface is access-controlled. A live public developer portal
+    exists at https://developer.paymentus.io/ (HTTP 200), however it is a
+    request-access / NDA gate: the sitemap exposes only /email-verification,
+    /non-disclosure-agreement, /signup-pending, /signup-pending-unverified,
+    /docs/Reference and /. The full interactive API reference, specifications,
+    and testing environment sit behind login. No downloadable OpenAPI or Swagger
+    document is published on the public web — probes for /openapi.json,
+    /openapi.yaml, /swagger.json, /api-docs, /spec and /redoc on the portal host
+    all returned HTTP 404 (JSON). Zero OpenAPI specifications were harvested.
+
+    The real API surface is nonetheless documented publicly through Paymentus'
+    Node.js Server SDK on npm — @paymentus/core, @paymentus/auth and
+    @paymentus/xotp — which reveal the payment (XOTP) product family, the
+    authentication model, the scope catalog, and production base URLs. The
+    public portal page /docs/Reference additionally lists payment-method type
+    codes, payment-method category codes, and channel codes (WEB, IVR, IPN, IG).
+
+    Product family (from public SDK + marketing): XOTP payment API (make payment
+    / Sale, account inquiry, payment history, void payment, customer profile
+    CRUD + list, wallet/payment-method tokenization, linked accounts, AutoPay),
+    plus the Instant Payment Network (IPN), BillWallet, and Profit by Paymentus
+    (AP/AR). Payment methods include cards, ACH/eCheck, cash, and digital wallets
+    (PayPal, Venmo, Apple Pay, Google Pay).
+  homeMarket: United States
+  developerPortal:
+    url: https://developer.paymentus.io/
+    status: 200
+    gated: true
+    note: >-
+      Live landing/marketing portal; request-access with NDA required for the
+      full reference, specs, and sandbox. Server-side app returns JSON 404 for
+      SPA routes probed anonymously.
+  publicReferencePage:
+    url: https://developer.paymentus.io/docs/Reference
+    status: 200
+    note: Public reference tables for payment-method type/category codes and channel codes.
+  openapiHarvested: false
+  specsCount: 0
+  openapiProbes:
+    - url: https://developer.paymentus.io/openapi.json
+      status: 404
+    - url: https://developer.paymentus.io/openapi.yaml
+      status: 404
+    - url: https://developer.paymentus.io/swagger.json
+      status: 404
+    - url: https://developer.paymentus.io/api-docs
+      status: 404
+    - url: https://developer.paymentus.io/spec
+      status: 404
+    - url: https://developer.paymentus.io/redoc
+      status: 404
+  authModel:
+    scheme: JWT Bearer token obtained via pre-shared-key signed request
+    details: >-
+      The @paymentus/auth client signs a token request with a pre-shared key
+      (identified by a key id / kid and a three-letter application acronym /
+      tla), an optional audience (aud) claim, and a set of granular scopes (or a
+      pixel that maps to scopes). The returned JWT is sent as a Bearer token on
+      XOTP calls, alongside X-Ext-Session-Id / X-Ext-Session-App headers.
+    scopes:
+      - xotp
+      - xotp:profile
+      - xotp:profile:read
+      - xotp:profile:create
+      - xotp:profile:update
+      - xotp:profile:delete
+      - xotp:listProfiles
+      - xotp:payment
+      - xotp:payment:history
+      - xotp:payment:void
+      - xotp:autopay
+      - xotp:autopay:delete
+      - xotp:account
+      - xotp:accounts
+      - xotp:listAccounts
+      - paybotus
+    oidcDiscovery: none observed (no anonymous /.well-known/openid-configuration on the API host)
+  webhooksEvents:
+    documented: unknown
+    note: >-
+      No public webhook/event catalog or AsyncAPI was found; Paymentus provides
+      real-time notifications (IPN) but the event contract is behind the portal
+      gate. Not fabricated here.
+  postman:
+    published: false
+    note: No public Postman collection or workspace located.
+  transports:
+    - protocol: REST
+      scheme: https
+      baseURL: https://api.paymentus.com
+      documented: true
+      note: >-
+        Base URL varies by the environment the biller is provisioned in;
+        secure1.paymentus.com and developer.paymentus.io also appear as base
+        URLs in the public SDK examples.
+  baseURLsObserved:
+    - https://api.paymentus.com
+    - https://secure1.paymentus.com
+    - https://developer.paymentus.io
+  isoAndScheme:
+    note: >-
+      Paymentus operates in the US market, which has no single payments mandate
+      or unified scheme API. No public ISO 20022 message documentation or FAPI /
+      scheme conformance surface was found; the platform is a proprietary
+      REST/JWT payment API.
+sources:
+  - url: https://www.paymentus.com/
+    type: Website
+    status: 200
+    note: Company identity, products (IPP, IPN, BillWallet, Profit by Paymentus, Billeo), NYSE PAY, Addison TX HQ, founded 2004.
+  - url: https://developer.paymentus.io/
+    type: DeveloperPortal
+    status: 200
+    note: Live but request-access/NDA-gated developer portal.
+  - url: https://developer.paymentus.io/docs/Reference
+    type: APIReference
+    status: 200
+    note: Public reference tables (payment-method and channel codes).
+  - url: https://developer.paymentus.io/sitemap.xml
+    type: Sitemap
+    status: 200
+    note: Confirms the portal exposes only signup/verification/NDA pages plus /docs/Reference publicly.
+  - url: https://www.npmjs.com/package/@paymentus/core
+    type: SDK
+    status: 200
+    note: Paymentus Core Server SDK — unified auth + XOTP, base URLs, config.
+  - url: https://www.npmjs.com/package/@paymentus/auth
+    type: SDK
+    status: 200
+    note: Auth client — JWT/pre-shared-key model and full scope catalog.
+  - url: https://www.npmjs.com/package/@paymentus/xotp
+    type: SDK
+    status: 200
+    note: XOTP payment client — make payment, account inquiry, profiles, autopay, wallets.
+  - url: https://status.paymentus.com/
+    type: StatusPage
+    status: 200
+    note: Public status page.
+  - url: https://github.com/paymentus
+    type: GitHubOrganization
+    status: 200
+    note: Org exists; no public repositories with specs at review time.

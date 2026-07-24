@@ -1,0 +1,106 @@
+aid: paymentus
+url: https://raw.githubusercontent.com/api-evangelist/paymentus/refs/heads/main/apis.yml
+name: Paymentus
+kind: company
+description: >-
+  Paymentus (NYSE: PAY) is a Addison, Texas-based cloud billing and payment
+  technology company founded in 2004 that operates one of the largest electronic
+  bill presentment and payment (EBPP) networks in North America. Its Intelligent
+  Payment Platform, Instant Payment Network (IPN), BillWallet, and Profit by
+  Paymentus (AP/AR) products let utilities, government agencies, insurers,
+  telecom, healthcare, higher education, and financial institutions accept and
+  disburse payments across web, mobile, IVR, call center, and agent channels
+  using cards, ACH/eCheck, cash, and digital wallets (PayPal, Venmo, Apple Pay,
+  Google Pay). Its home market is the United States. Paymentus is API-native but
+  its developer surface is access-controlled: the developer portal at
+  developer.paymentus.io is live and public, yet the full API reference,
+  specifications, and testing environment sit behind a request-access / NDA
+  gate. A public Node.js Server SDK (@paymentus/core, @paymentus/auth,
+  @paymentus/xotp) documents the real payment (XOTP) surface, JWT/pre-shared-key
+  authentication, granular OAuth-style scopes, and production base URLs. No
+  downloadable OpenAPI/Swagger specification is published on the public web as of
+  this review.
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+tags:
+- Payments
+- United States
+- Bill Payment
+- Electronic Bill Presentment
+- Payment Processing
+- Payment Gateway
+- Disbursements
+- ACH
+- Real-Time Payments
+- Tokenization
+created: '2026-07-24'
+modified: '2026-07-24'
+specificationVersion: '0.19'
+apis:
+- aid: paymentus:paymentus-xotp-api
+  name: Paymentus XOTP API
+  description: >-
+    The XOTP (Paymentus payment) API exposes core Service Commerce operations —
+    make payment (Sale), account inquiry, payment history, void/cancel payment,
+    customer profile create/read/update/delete and list, wallet/payment-method
+    tokenization, linked accounts, and AutoPay management. Requests carry a
+    Bearer JWT and are scoped with granular XOTP scopes. Documented publicly via
+    the @paymentus/xotp Node.js SDK and the developer portal reference tables;
+    the full interactive reference requires portal access.
+  humanURL: https://developer.paymentus.io/docs/Reference
+  baseURL: https://api.paymentus.com
+  tags:
+  - Payments
+  - Bill Payment
+  - Tokenization
+  - AutoPay
+  - Disbursements
+  properties:
+  - type: Documentation
+    url: https://developer.paymentus.io/
+  - type: APIReference
+    url: https://developer.paymentus.io/docs/Reference
+  - type: SDK
+    url: https://www.npmjs.com/package/@paymentus/xotp
+- aid: paymentus:paymentus-authentication-api
+  name: Paymentus Authentication API
+  description: >-
+    The Authentication API issues short-lived JWT access tokens for the XOTP
+    payment surface. A client signs a request with a pre-shared key (identified
+    by a key id / kid and a three-letter application acronym / tla), declares the
+    granular scopes it needs (for example xotp, xotp:profile, xotp:payment,
+    xotp:autopay, xotp:accounts) or a pixel that maps to those scopes, and
+    receives a Bearer token used on subsequent XOTP calls. Documented publicly
+    via the @paymentus/auth Node.js SDK.
+  humanURL: https://developer.paymentus.io/
+  baseURL: https://api.paymentus.com
+  tags:
+  - Authentication
+  - JWT
+  - Scopes
+  properties:
+  - type: Documentation
+    url: https://developer.paymentus.io/
+  - type: SDK
+    url: https://www.npmjs.com/package/@paymentus/auth
+common:
+- type: Website
+  url: https://www.paymentus.com/
+- type: DeveloperPortal
+  url: https://developer.paymentus.io/
+- type: APIReference
+  url: https://developer.paymentus.io/docs/Reference
+- type: StatusPage
+  url: https://status.paymentus.com/
+- type: GitHubOrganization
+  url: https://github.com/paymentus
+- type: LinkedIn
+  url: https://www.linkedin.com/company/paymentus/
+- type: TermsOfService
+  url: https://www.paymentus.com/customer-terms-privacy/website-condition-of-use/
+- type: PrivacyPolicy
+  url: https://www.paymentus.com/customer-terms-privacy/website-privacy-notice-united-states/
+- type: InvestorRelations
+  url: https://ir.paymentus.com/
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
