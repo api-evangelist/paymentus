@@ -1,0 +1,60 @@
+generated: '2026-07-24'
+method: derived
+source: https://www.npmjs.com/package/@paymentus/xotp
+note: >-
+  Entity graph derived from the TypeScript types documented in the public
+  @paymentus/xotp SDK README. There is no public OpenAPI; relationships are
+  inferred from the request/response shapes shown in the SDK examples, so id
+  prefixes and full cardinality sit behind the developer.paymentus.io gate.
+entities:
+  - name: Customer
+    fields: [firstName, lastName, email, dayPhoneNr, address]
+  - name: Address
+    fields: [line1, line2, city, state, zipCode, country]
+  - name: PaymentHeader
+    fields: [operation, accountNumber, paymentAmount, paymentTypeCode, authToken1]
+  - name: PaymentMethod
+    fields: [type, accountNumber, cardHolderName, creditCardExpiryDate]
+  - name: Payment
+    fields: [header, paymentMethod, customer]
+  - name: Profile
+    description: Stored wallet / tokenized payment-method profile.
+  - name: Account
+    description: Biller account a payment is applied to (accountNumber).
+  - name: AutoPay
+    description: Recurring-payment enrollment tied to an account.
+  - name: User
+    fields: [userLogin]
+relationships:
+  - from: Payment
+    to: PaymentHeader
+    type: has_many
+    via: header
+  - from: Payment
+    to: PaymentMethod
+    type: has_one
+    via: paymentMethod
+  - from: Payment
+    to: Customer
+    type: has_one
+    via: customer
+  - from: Customer
+    to: Address
+    type: has_one
+    via: address
+  - from: PaymentHeader
+    to: Account
+    type: belongs_to
+    via: accountNumber
+  - from: Profile
+    to: User
+    type: belongs_to
+    via: userLogin
+  - from: AutoPay
+    to: Account
+    type: belongs_to
+    via: accountNumber
+  - from: Account
+    to: User
+    type: belongs_to
+    via: userLogin

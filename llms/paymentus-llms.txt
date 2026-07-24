@@ -1,0 +1,34 @@
+# Paymentus
+
+> Paymentus (NYSE: PAY) is a US cloud billing and payment technology company (founded 2004, Addison, Texas) that runs one of the largest electronic bill presentment and payment (EBPP) networks in North America. Its Intelligent Payment Platform, Instant Payment Network (IPN), BillWallet, and Profit by Paymentus (AP/AR) products let utilities, government, insurers, telecom, healthcare, higher education, and financial institutions accept and disburse payments across web, mobile, IVR, call center, and agent channels. The developer surface is API-native but access-controlled: the portal at developer.paymentus.io is public, while the full API reference, specifications, and testing environment sit behind a request-access / NDA gate. The real payment (XOTP) surface, JWT/pre-shared-key auth, and scope catalog are documented publicly through the Node.js Server SDK on npm.
+
+## APIs
+- [Paymentus XOTP API](https://developer.paymentus.io/docs/Reference): Core Service Commerce payment surface — make payment (Sale), refund, stage payment, account inquiry, payment history, profile (wallet/tokenization) CRUD, AutoPay, and user management. Bearer JWT with granular XOTP scopes. Base: https://api.paymentus.com
+- [Paymentus Authentication API](https://developer.paymentus.io/): Issues short-lived JWT access tokens from a pre-shared key (kid + three-letter application acronym), granular scopes, or a Paymentus "pixel" scope bundle.
+
+## SDKs
+- [@paymentus/core](https://www.npmjs.com/package/@paymentus/core): Unified Node.js/TypeScript Server SDK (auth + XOTP).
+- [@paymentus/auth](https://www.npmjs.com/package/@paymentus/auth): Auth API client — JWT token management, scope + pixel model.
+- [@paymentus/xotp](https://www.npmjs.com/package/@paymentus/xotp): XOTP payment client.
+
+## Artifacts
+- [Packages](https://raw.githubusercontent.com/api-evangelist/paymentus/refs/heads/main/packages/paymentus-packages.yml): First-party npm SDKs.
+- [Authentication](https://raw.githubusercontent.com/api-evangelist/paymentus/refs/heads/main/authentication/paymentus-authentication.yml): Bearer JWT / pre-shared-key auth profile.
+- [OAuth Scopes](https://raw.githubusercontent.com/api-evangelist/paymentus/refs/heads/main/scopes/paymentus-scopes.yml): 16 XOTP scopes + pixel bundles.
+- [Conventions](https://raw.githubusercontent.com/api-evangelist/paymentus/refs/heads/main/conventions/paymentus-conventions.yml): Auth, session-id tracing, payload envelope, PCI masking.
+- [MCP (candidate)](https://raw.githubusercontent.com/api-evangelist/paymentus/refs/heads/main/mcp/paymentus-mcp.yml): 26 candidate tools derived from the XOTP SDK.
+- [Conformance](https://raw.githubusercontent.com/api-evangelist/paymentus/refs/heads/main/conformance/paymentus-conformance.yml): SOC 2, PCI DSS, HIPAA.
+- [Data model](https://raw.githubusercontent.com/api-evangelist/paymentus/refs/heads/main/data-model/paymentus-data-model.yml): Entity graph from SDK types.
+- [Lifecycle](https://raw.githubusercontent.com/api-evangelist/paymentus/refs/heads/main/lifecycle/paymentus-lifecycle.yml): Status page + versioning notes.
+
+## Docs
+- [Developer Portal](https://developer.paymentus.io/): Request-access / NDA gate for the full reference and sandbox.
+- [Public Reference](https://developer.paymentus.io/docs/Reference): Payment-method type/category codes and channel codes (WEB, IVR, IPN, IG).
+- [Trust Center](https://trust.paymentus.com/): SOC 2, PCI DSS, HIPAA.
+- [Status](https://status.paymentus.com/): Platform status page.
+- [Company](https://www.paymentus.com/): Products and corporate identity.
+
+## Notes
+- No downloadable OpenAPI/Swagger specification is published on the public web; the machine-readable contract is gated.
+- No public webhook/event catalog or AsyncAPI was found (IPN real-time notifications exist but the event contract is gated).
+- Auth is Bearer JWT minted from a pre-shared key; no anonymous OIDC discovery document is served.

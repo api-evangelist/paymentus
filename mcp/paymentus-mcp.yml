@@ -1,0 +1,93 @@
+generated: '2026-07-24'
+method: derived
+status: candidate
+source: packages/paymentus-packages.yml
+note: >-
+  No official hosted/remote Paymentus MCP server was found (no @paymentus MCP
+  package, no entry in public MCP registries, no mcp.paymentus.* endpoint). The
+  tools below are a CANDIDATE surface derived from the operations documented in
+  the public @paymentus/xotp Node.js SDK README. Input schemas are approximate —
+  the authoritative request contracts are behind the developer.paymentus.io gate.
+server:
+  name: paymentus
+  transport: http
+  url: null
+tools:
+  - name: make_payment
+    description: Make a payment (Sale) for one or more account headers.
+    source_operation: "@paymentus/xotp#makePayment"
+  - name: refund_payment
+    description: Refund a prior payment.
+    source_operation: "@paymentus/xotp#refundPayment"
+  - name: stage_payment
+    description: Stage a payment for later confirmation.
+    source_operation: "@paymentus/xotp#stagePayment"
+  - name: fetch_last_payment
+    description: Fetch the most recent payment for an account.
+    source_operation: "@paymentus/xotp#fetchLastPayment"
+  - name: get_payment_history
+    description: Retrieve payment history for an account.
+    source_operation: "@paymentus/xotp#getPaymentHistory"
+  - name: account_inquiry
+    description: Look up account balance/schedule/last-used payment method.
+    source_operation: "@paymentus/xotp#accountInquiry"
+  - name: get_account_info_by_account_number
+    description: Fetch account info by account number.
+    source_operation: "@paymentus/xotp#getAccountInfoByAccountNumber"
+  - name: get_account_info_by_email
+    description: Fetch account info by email.
+    source_operation: "@paymentus/xotp#getAccountInfoByEmail"
+  - name: get_bank_info
+    description: Look up bank/routing information.
+    source_operation: "@paymentus/xotp#getBankInfo"
+  - name: cnv_calculation
+    description: Calculate convenience fee for a payment.
+    source_operation: "@paymentus/xotp#cnvCalculation"
+  - name: create_profile
+    description: Create a wallet/payment-method profile (tokenization).
+    source_operation: "@paymentus/xotp#createProfile"
+  - name: get_profile
+    description: Read a payment-method profile.
+    source_operation: "@paymentus/xotp#getProfile"
+  - name: get_profiles
+    description: List payment-method profiles.
+    source_operation: "@paymentus/xotp#getProfiles"
+  - name: update_profile
+    description: Update a payment-method profile.
+    source_operation: "@paymentus/xotp#updateProfile"
+  - name: delete_profile
+    description: Delete a payment-method profile.
+    source_operation: "@paymentus/xotp#deleteProfile"
+  - name: create_user
+    description: Create a user.
+    source_operation: "@paymentus/xotp#createUser"
+  - name: get_user
+    description: Read a user.
+    source_operation: "@paymentus/xotp#getUser"
+  - name: update_user
+    description: Update a user.
+    source_operation: "@paymentus/xotp#updateUser"
+  - name: delete_user
+    description: Delete a user.
+    source_operation: "@paymentus/xotp#deleteUser"
+  - name: resend_email_confirmation
+    description: Resend an email confirmation to a user.
+    source_operation: "@paymentus/xotp#resendEmailConfirmation"
+  - name: create_autopay
+    description: Enroll an account in AutoPay.
+    source_operation: "@paymentus/xotp#createAutopay"
+  - name: stage_autopay
+    description: Stage an AutoPay enrollment for confirmation.
+    source_operation: "@paymentus/xotp#stageAutopay"
+  - name: get_autopay
+    description: Read an AutoPay enrollment.
+    source_operation: "@paymentus/xotp#getAutopay"
+  - name: list_auto_pay
+    description: List AutoPay enrollments.
+    source_operation: "@paymentus/xotp#listAutoPay"
+  - name: update_autopay
+    description: Update an AutoPay enrollment.
+    source_operation: "@paymentus/xotp#updateAutopay"
+  - name: delete_autopay
+    description: Delete an AutoPay enrollment.
+    source_operation: "@paymentus/xotp#deleteAutopay"

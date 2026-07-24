@@ -1,0 +1,34 @@
+generated: '2026-07-24'
+method: searched
+source: https://www.npmjs.com/package/@paymentus/auth
+docs: https://developer.paymentus.io/
+summary:
+  types: [http, oauth2]
+  scheme: bearer
+  bearer_format: JWT
+  token_issuance: pre-shared-key signed request
+  oauth2_style_scopes: true
+schemes:
+  - name: BearerAuth
+    type: http
+    scheme: bearer
+    bearerFormat: JWT
+    description: >-
+      XOTP payment calls carry a short-lived Bearer JWT in the Authorization
+      header. The token is minted by the Auth API (@paymentus/auth) from a
+      pre-shared key identified by a key id (kid) and a three-letter application
+      acronym (tla), optionally an audience (aud, e.g. WEB_SDK), and the set of
+      granular scopes (or a Paymentus "pixel" that maps to scopes) the client
+      needs. See scopes/paymentus-scopes.yml for the scope catalog.
+    sources: [packages/paymentus-packages.yml]
+session_headers:
+  - name: X-Ext-Session-Id
+    description: Per-session UUID sent alongside the Bearer token on XOTP calls.
+  - name: X-Ext-Session-App
+    description: Client application identifier (e.g. xotp-sdk@1.0.0).
+notes: >-
+  No anonymous OIDC/OAuth discovery document was served on the API host
+  (/.well-known/openid-configuration and /.well-known/oauth-authorization-server
+  return no response on api.paymentus.com). The token endpoint and full auth
+  reference sit behind the developer.paymentus.io request-access gate; the model
+  above is documented publicly through the @paymentus/auth SDK README.

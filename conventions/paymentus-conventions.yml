@@ -1,0 +1,44 @@
+generated: '2026-07-24'
+method: searched
+source: https://www.npmjs.com/package/@paymentus/xotp
+docs: https://developer.paymentus.io/docs/Reference
+authentication:
+  style: Bearer JWT (short-lived), minted from a pre-shared key + granular scopes
+  ref: authentication/paymentus-authentication.yml
+request_tracing:
+  header: X-Ext-Session-Id
+  description: Per-session UUID the SDK generates and sends on each XOTP call.
+  app_header: X-Ext-Session-App
+transport:
+  protocol: REST over HTTPS
+  base_url_note: >-
+    The base URL is per biller/environment. Public SDK examples use
+    https://api.paymentus.com, https://secure1.paymentus.com,
+    https://developer.paymentus.io, and a dev cluster
+    https://k8-dev.paymentus.io:31443/api.
+payload_shape:
+  payment_envelope: >-
+    Payment operations wrap a `payment` object containing a `header[]` (one or
+    more PaymentHeader with operation, accountNumber, paymentAmount,
+    paymentTypeCode), a `paymentMethod` (type enum + card/bank fields), and a
+    `customer` (name, contact, address). A single request can batch multiple
+    payment headers.
+  channel_codes: [WEB, IVR, IPN, IG]
+  operation_types: [Sale, Refund]
+logging_and_pci:
+  masking_levels: [NONE, PCI_ONLY, ALL]
+  note: SDK LoggingMiddleware masks PCI fields (PAN, etc.) by default.
+idempotency:
+  supported: unknown
+  note: >-
+    No idempotency-key header or parameter is documented in the public SDK; the
+    full request reference is behind the developer.paymentus.io gate. Not
+    asserted here.
+pagination:
+  supported: unknown
+  note: Not documented in the public SDK surface.
+errors:
+  ref: none-public
+  note: >-
+    No public error/problem-type catalog was located; error semantics sit behind
+    the portal gate.

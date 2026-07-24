@@ -1,0 +1,17 @@
+generated: '2026-07-24'
+method: searched
+probe: true
+source: https://trust.paymentus.com/
+url: https://trust.paymentus.com/
+certifications:
+- SOC 2
+- PCI DSS
+- HIPAA
+evidence:
+- source: https://trust.paymentus.com/
+  keywords:
+  - soc 2
+  - soc2
+  - pci dss
+  - hipaa
+  - trust center

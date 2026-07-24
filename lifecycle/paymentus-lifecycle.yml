@@ -1,0 +1,18 @@
+generated: '2026-07-24'
+method: searched
+source: https://developer.paymentus.io/
+status_page: https://status.paymentus.com/
+versioning:
+  scheme: unknown
+  note: >-
+    No public versioning policy located; the XOTP SDK line is versioned
+    independently on npm (@paymentus/xotp 1.0.2, @paymentus/auth 1.0.9,
+    @paymentus/core 1.0.6).
+deprecation:
+  policy_url: null
+  sunset_header: unknown
+  note: No public deprecation/Sunset policy documented; reference is gated.
+sla:
+  url: null
+  note: SLA terms are contract-specific and not published on the public web.
+deprecated_operations: []

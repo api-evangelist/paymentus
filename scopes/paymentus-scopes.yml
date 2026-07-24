@@ -1,0 +1,60 @@
+generated: '2026-07-24'
+method: searched
+source: https://www.npmjs.com/package/@paymentus/auth
+docs: https://developer.paymentus.io/
+model: >-
+  Granular OAuth-style scopes declared at JWT issuance via the Auth API. A client
+  requests scopes directly or supplies a Paymentus "pixel" that expands to a
+  required scope set (see pixels[] below).
+schemes:
+  - name: BearerAuth
+    type: jwt-scopes
+    source: packages/paymentus-packages.yml
+scopes:
+  - scope: xotp
+    description: Basic XOTP functionality (base payment surface).
+  - scope: "xotp:profile"
+    description: Profile (wallet/payment-method token) management.
+  - scope: "xotp:profile:read"
+    description: Read profile data.
+  - scope: "xotp:profile:create"
+    description: Create profiles.
+  - scope: "xotp:profile:update"
+    description: Update profiles.
+  - scope: "xotp:profile:delete"
+    description: Delete profiles.
+  - scope: "xotp:listProfiles"
+    description: List profiles.
+  - scope: "xotp:payment"
+    description: Payment processing (Sale / make payment).
+  - scope: "xotp:payment:history"
+    description: Read payment history.
+  - scope: "xotp:payment:void"
+    description: Void or cancel payments.
+  - scope: "xotp:autopay"
+    description: AutoPay enrollment and management.
+  - scope: "xotp:autopay:delete"
+    description: Delete AutoPay settings.
+  - scope: "xotp:account"
+    description: Link an account to a user.
+  - scope: "xotp:accounts"
+    description: Account management.
+  - scope: "xotp:listAccounts"
+    description: List accounts.
+  - scope: paybotus
+    description: Paybotus functionality.
+pixels:
+  - name: tokenization-pixel
+    scopes: ["xotp:profile"]
+    required_claims: []
+  - name: list-wallets-pixel
+    scopes: ["xotp:profile", "xotp:listProfiles", "xotp:profile:delete"]
+    required_claims: [userLogin]
+  - name: user-checkout-pixel
+    scopes: ["xotp:profile", "xotp:payment", "xotp:listProfiles", "xotp:listAccounts", "xotp:profile:delete"]
+    optional_scopes: ["xotp:autopay", "xotp:account"]
+    required_claims: [userLogin, paymentsData]
+  - name: guest-checkout-pixel
+    scopes: ["xotp:payment", "xotp:listAccounts", "xotp:profile"]
+    required_claims: [paymentsData]
+    note: Automatically sets pmToken ['anonymousPMOnly'] in the JWT.

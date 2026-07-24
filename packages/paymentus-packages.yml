@@ -1,0 +1,48 @@
+generated: '2026-07-24'
+method: searched
+source: https://www.npmjs.com/org/paymentus
+packages:
+  - language: javascript
+    registry: npm
+    name: "@paymentus/core"
+    url: https://www.npmjs.com/package/@paymentus/core
+    install: npm install @paymentus/core
+    version: 1.0.6
+    license: MIT
+    published: '2026-06-09'
+    official: true
+    description: >-
+      Paymentus Core Server SDK — unified Node.js/TypeScript interface that
+      bundles @paymentus/auth and @paymentus/xotp (JWT token management + the
+      XOTP payment surface) behind one SDK class.
+  - language: javascript
+    registry: npm
+    name: "@paymentus/auth"
+    url: https://www.npmjs.com/package/@paymentus/auth
+    install: npm install @paymentus/auth
+    version: 1.0.9
+    license: MIT
+    published: '2026-06-09'
+    official: true
+    description: >-
+      Paymentus Auth API client — issues short-lived JWT access tokens from a
+      pre-shared key (kid + three-letter application acronym), granular XOTP
+      scopes, and Paymentus "pixel" scope bundles.
+  - language: javascript
+    registry: npm
+    name: "@paymentus/xotp"
+    url: https://www.npmjs.com/package/@paymentus/xotp
+    install: npm install @paymentus/xotp
+    version: 1.0.2
+    license: MIT
+    published: '2025-08-15'
+    official: true
+    description: >-
+      Paymentus XOTP Server SDK — the payment (Service Commerce) client: make
+      payment, refund, account inquiry, payment history, profile CRUD,
+      wallet/tokenization, AutoPay, and user management.
+notes: >-
+  All three packages are published under the first-party npm @paymentus org with
+  homepage https://www.paymentus.com/. No first-party client library was found on
+  PyPI, Maven Central, NuGet, pkg.go.dev, RubyGems, Packagist, or crates.io —
+  Paymentus ships only the Node.js/TypeScript SDK line as of this round.

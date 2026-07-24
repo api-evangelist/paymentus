@@ -83,6 +83,10 @@ apis:
   - type: SDK
     url: https://www.npmjs.com/package/@paymentus/auth
 common:
+- type: TrustCenter
+  url: security/paymentus-trust-center.yml
+- type: DomainSecurity
+  url: security/paymentus-domain-security.yml
 - type: Website
   url: https://www.paymentus.com/
 - type: DeveloperPortal
@@ -101,6 +105,32 @@ common:
   url: https://www.paymentus.com/customer-terms-privacy/website-privacy-notice-united-states/
 - type: InvestorRelations
   url: https://ir.paymentus.com/
+- type: Blog
+  url: https://www.paymentus.com/industry-insights/
+- type: Support
+  url: https://www.paymentus.com/contact/?form=pay
+- type: Packages
+  url: packages/paymentus-packages.yml
+- type: SDKs
+  url: packages/paymentus-packages.yml
+- type: Authentication
+  url: authentication/paymentus-authentication.yml
+- type: OAuthScopes
+  url: scopes/paymentus-scopes.yml
+- type: Conventions
+  url: conventions/paymentus-conventions.yml
+- type: MCPServer
+  url: mcp/paymentus-mcp.yml
+- type: Conformance
+  url: conformance/paymentus-conformance.yml
+- type: Compliance
+  url: https://trust.paymentus.com/
+- type: Lifecycle
+  url: lifecycle/paymentus-lifecycle.yml
+- type: DataModel
+  url: data-model/paymentus-data-model.yml
+- type: LLMsTxt
+  url: llms/paymentus-llms.txt
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com

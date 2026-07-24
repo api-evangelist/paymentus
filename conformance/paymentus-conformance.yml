@@ -1,0 +1,34 @@
+generated: '2026-07-24'
+method: searched
+source: https://trust.paymentus.com/
+standards:
+  - id: pci-dss
+    conforms: true
+    evidence: PCI DSS listed on the Paymentus Trust Center (trust.paymentus.com).
+  - id: soc2
+    conforms: true
+    evidence: SOC 2 listed on the Paymentus Trust Center.
+  - id: hipaa
+    conforms: true
+    evidence: HIPAA listed on the Paymentus Trust Center.
+  - id: oauth2-scopes
+    conforms: true
+    evidence: >-
+      Granular OAuth-style scopes declared at JWT issuance (see
+      scopes/paymentus-scopes.yml); bearer JWT auth on XOTP calls.
+  - id: rfc9457-problem-details
+    conforms: false
+    evidence: No public error/problem-type catalog located.
+  - id: fapi
+    conforms: false
+    evidence: No FAPI conformance surface found; proprietary REST/JWT API.
+  - id: iso20022
+    conforms: false
+    evidence: >-
+      No public ISO 20022 message documentation; US market has no unified
+      scheme API.
+notes: >-
+  Compliance certifications (SOC 2 / PCI DSS / HIPAA) are published on the
+  Paymentus Trust Center at https://trust.paymentus.com/ (see
+  security/paymentus-trust-center.yml). Standards that are not-conforming are
+  recorded as honest negatives, not gaps to fabricate.
