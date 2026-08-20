@@ -35,6 +35,17 @@ image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.j
 tags:
 - Payments
 - United States
+- Bill Payments
+- Electronic Bill Presentment
+- Payment Processing
+- Payment Gateway
+- Disbursements
+- ACH
+- Real-Time Payments
+- Tokenization
+tags_raw:
+- Payments
+- United States
 - Bill Payment
 - Electronic Bill Presentment
 - Payment Processing
@@ -60,6 +71,12 @@ apis:
   humanURL: https://developer.paymentus.io/docs/Reference
   baseURL: https://api.paymentus.com
   tags:
+  - Payments
+  - Bill Payments
+  - Tokenization
+  - AutoPay
+  - Disbursements
+  tags_raw:
   - Payments
   - Bill Payment
   - Tokenization
